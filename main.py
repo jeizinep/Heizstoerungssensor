@@ -1,43 +1,55 @@
-import cv2
 import time
-import numpy as np
+import timeit
+import cv2
 
-pervious_time = time.time()
 
-# Read the image
-while True:
-    image = cv2.imread('Screenshot 2023-12-01 195102.png')
-    image = cv2.resize(image, (0, 0), fx=0.2, fy=0.2)
+
+def image_recognition(file_name, start_index):
+    # Read the image
+    #image = cv2.imread(file_name)
+    image = cv2.resize(file_name, (0, 0), None, .25, .25)
 
     # Convert the image to grayscale
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
+    clahe_img = clahe.apply(gray)
 
     # Apply a threshold to get the specific lighting distribution
-    _, threshold = cv2.threshold(gray, 230, 255, cv2.THRESH_BINARY)
+    _, threshold = cv2.threshold(clahe_img, 230, 255, cv2.THRESH_BINARY)
 
     # Find the contours of the thresholded image
     contours, _ = cv2.findContours(threshold, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    image_copy = threshold.copy()
 
-    image_copy = image.copy()
+    start_index=0
 
-    cv2.drawContours(image=image_copy, contours=contours, contourIdx=-1, color=(0, 255, 0), thickness=2, lineType=cv2.LINE_AA)
-    cv2.imshow('None approximation', image_copy)
-    cv2.waitKey(0)
-    print(time.time() - pervious_time)
-    pervious_time = time.time()
+    for contour in contours:
+        # Find the bounding rectangle for each contour
+        x, y, w, h = cv2.boundingRect(contour)
+
+        start_index += 1
+
+        print(x, y, w, h)
+
+        # Crop the image to the bounding rectangle
+        cropped_image = image_copy[y:y+h, x:x+h]
+
+        #cv2.rectangle(image_copy, (x, y), (x + w, y + h), (0, 255, 0), 2)
+        #save the image
+        #cv2.imwrite(f'image{start_index}.png', cropped_image)
+        cv2.imshow('None approximation', cropped_image)
+        cv2.waitKey(100)
 
 
+Images = ['PXL_20231201_190244090.jpg']
+name = 0
 
+cap = cv2.VideoCapture(0)
+print(cap)
 
-
-"""
-# Iterate over each contour
-for contour in contours:
-    # Find the bounding rectangle for each contour
-    x, y, w, h = cv2.boundingRect(contour)
-
-    image_copy = image.copy()
-
-    # Draw contours on cropped image
-    image_copy = image_copy[y:y+h, x:x+w]
-"""
+#for i in Images:
+while True:
+    ret, frame = cap.read()
+    name += 1
+    t = timeit.Timer(lambda: image_recognition(frame, (name - 1)))
+    print(t.timeit(number=1))
