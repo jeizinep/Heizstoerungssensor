@@ -1,55 +1,43 @@
-import time
-import timeit
-import cv2
+from yaml import safe_load
+from func2 import *
+
+def fehlertext(digits=list):
+    zustand = ()
+    temp = None
+    with open("Status.yml", "r") as file:
+        fehler_bibliothek = safe_load(file)
+
+    if type(digits[0]) == int:
+        zustand = fehler_bibliothek['STATUSauto'][digits[0]]
+        temp_list = digits[1:]
+        temp = int(''.join(map(str, temp_list)))
+    elif type(digits[0]) == str:
+        if digits[0] == "H":
+            zustand = fehler_bibliothek['H'][digits[1]]
+            temp_list = digits[2:]
+            temp = int(''.join(map(str, temp_list)))
+        else:
+            code_art_list = digits[0:2]
+            code_art = ''.join(map(str, code_art_list))
+            fehler_code_list = digits[2:]
+            fehler_code = int(''.join(map(str, fehler_code_list)))
+            zustand = fehler_bibliothek[code_art][fehler_code]
+
+    return zustand, temp
 
 
 
-def image_recognition(file_name, start_index):
-    # Read the image
-    #image = cv2.imread(file_name)
-    image = cv2.resize(file_name, (0, 0), None, .25, .25)
-
-    # Convert the image to grayscale
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
-    clahe_img = clahe.apply(gray)
-
-    # Apply a threshold to get the specific lighting distribution
-    _, threshold = cv2.threshold(clahe_img, 230, 255, cv2.THRESH_BINARY)
-
-    # Find the contours of the thresholded image
-    contours, _ = cv2.findContours(threshold, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    image_copy = threshold.copy()
-
-    start_index=0
-
-    for contour in contours:
-        # Find the bounding rectangle for each contour
-        x, y, w, h = cv2.boundingRect(contour)
-
-        start_index += 1
-
-        print(x, y, w, h)
-
-        # Crop the image to the bounding rectangle
-        cropped_image = image_copy[y:y+h, x:x+h]
-
-        #cv2.rectangle(image_copy, (x, y), (x + w, y + h), (0, 255, 0), 2)
-        #save the image
-        #cv2.imwrite(f'image{start_index}.png', cropped_image)
-        cv2.imshow('None approximation', cropped_image)
-        cv2.waitKey(100)
 
 
-Images = ['PXL_20231201_190244090.jpg']
-name = 0
 
-cap = cv2.VideoCapture(0)
-print(cap)
+def main():
+    while True:
+        anzeige = get_status("http://192.168.1.62:8080/?action=stream")
 
-#for i in Images:
-while True:
-    ret, frame = cap.read()
-    name += 1
-    t = timeit.Timer(lambda: image_recognition(frame, (name - 1)))
-    print(t.timeit(number=1))
+        print(anzeige)
+        print(fehlertext(anzeige))
+
+
+
+if __name__ == "__main__":
+    main()
