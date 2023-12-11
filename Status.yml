@@ -1,0 +1,114 @@
+STATUSauto:
+  0:
+    Bedeutung: "Ruhezustand, keine Wärmeanforderung"
+    Beschreibung: "Kessel ist eingeschaltet, ansonsten keine Funktion"
+  1: 
+    Bedeutung: "Wärmeanforderung vor- handen, jedoch Kessel ist aus"
+    Beschreibung: "Kessel ist aus, weil a) die Kesselsoll-Temperatur überschritten ist b) eine FE - oder AL - Informationsmeldung vorhanden ist."
+  2:
+    Bedeutung: "Vorspülen"
+    Beschreibung: "Ist eine Wärmeanforderung vorhanden, geht der Kessel in Vorspülbetrieb. Bei kaltem Brenntopf wird sofort der Anheizbetrieb gestartet."
+  3:
+    Bedeutung: "Anheizen"
+    Beschreibung: "Saugzuggebläse, Pelletsdosierschnecke und Heissluftgebläse werden eingeschaltet. Wird eine Flambildung erkanntschaltet das Heissluftgebläse aus und es wird in den Regelbetrieb übergegangen."
+  4:
+    Bedeutung: "Regelbetrieb"
+    Beschreibung: "Regelbetrieb = Modulationsbetrieb (5 - 15kW). Es wird zu der erreichenten Brennstoffmenge die Drehzahl des Saugzuggebläse Stuffenlos geregelt."
+  5:
+    Bedeutung: "Ausbrandbetrieb"
+    Beschreibung: "Steigt die Kesseltemperatur über 82°C oder wird die Kesselsoll-Temperatur um 15°C überschritten, erfolgt ein Ausbrand. Die Pelletsdosierschnecke wird angehalten, die Rostrüttelung eingeschaltet, das Gebläse läuft und die vorhandenen Pellets werden verbrannt. Das Gebläse läuft noch nach um den Brennertopf abzukühlen."
+  6:
+    Bedeutung: "Ausbrandbetrieb bei Kesselabschaltung mit Ein/Aus-Taste"
+    Beschreibung: "Die Pelletsdosierschnecke wird angehalten, die Rostrüttelung eingeschaltet, das Gebläse läuft und die vorhandenen Pellets werden verbrannt. Das Gebläse läuft noch nach um den Brennertopf abzukühlen. Erst bei kaltem Brennertopf schaltet Kessel aus (nur ein Punkt in der Anzeige wird angezeigt)."
+  7:
+    Bedeutung: "Kesselabschaltung"
+    Beschreibung: "Kessel ist kurz vor dem Auschalten, ansonsten keine Funktion."
+H:
+  0:
+    Bedeutung: "Ruhezustand, keine Wärmeanforderung"
+    Beschreibung: "Kessel ist eingeschaltet, ansonsten keine Funktion"
+  1: 
+    Bedeutung: "Wärmeanforderung vor- handen, jedoch Kessel ist aus"
+    Beschreibung: "Kessel ist aus, weil a) die Kesselsoll-Temperatur überschritten ist b) eine FE - oder AL - Informationsmeldung vorhanden ist."
+  2:
+    Bedeutung: "Vorspülen"
+    Beschreibung: "Ist eine Wärmeanforderung vorhanden, geht der Kessel in Vorspülbetrieb. Bei kaltem Brenntopf wird sofort der Anheizbetrieb gestartet."
+  3:
+    Bedeutung: "Anheizen"
+    Beschreibung: "Saugzuggebläse, Pelletsdosierschnecke und Heissluftgebläse werden eingeschaltet. Wird eine Flambildung erkanntschaltet das Heissluftgebläse aus und es wird in den Regelbetrieb übergegangen."
+  4:
+    Bedeutung: "Regelbetrieb"
+    Beschreibung: "Regelbetrieb = Modulationsbetrieb (5 - 15kW). Es wird zu der erreichenten Brennstoffmenge die Drehzahl des Saugzuggebläse Stuffenlos geregelt."
+  5:
+    Bedeutung: "Ausbrandbetrieb"
+    Beschreibung: "Steigt die Kesseltemperatur über 82°C oder wird die Kesselsoll-Temperatur um 15°C überschritten, erfolgt ein Ausbrand. Die Pelletsdosierschnecke wird angehalten, die Rostrüttelung eingeschaltet, das Gebläse läuft und die vorhandenen Pellets werden verbrannt. Das Gebläse läuft noch nach um den Brennertopf abzukühlen."
+  6:
+    Bedeutung: "Ausbrandbetrieb bei Kesselabschaltung mit Ein/Aus-Taste"
+    Beschreibung: "Die Pelletsdosierschnecke wird angehalten, die Rostrüttelung eingeschaltet, das Gebläse läuft und die vorhandenen Pellets werden verbrannt. Das Gebläse läuft noch nach um den Brennertopf abzukühlen. Erst bei kaltem Brennertopf schaltet Kessel aus (nur ein Punkt in der Anzeige wird angezeigt)."
+  7:
+    Bedeutung: "Kesselabschaltung"
+    Beschreibung: "Kessel ist kurz vor dem Auschalten, ansonsten keine Funktion."
+
+FE:
+  01:
+    Bedeutung/Ursache/Auswirkung: "*Vorratsbehälter nachfüllen* Endschalter im Vorratsbehälter hat geschaltet, Kesel heizt solange weiter bis die restliche Brennstoffmenge verbraucht ist."
+    Behebung: "Brennstoff nachfüllen"
+  02:
+    Bedeutung/Ursache/Auswirkung: "*Vorratsbehälter leer* Kessel geht in Ausbrand."
+    Behebung: "a) Ohne vollautomatischer Pelletszuführung: Brennstoff nachfüllen. b) Mit vollautomatischer Pelletszuführung: Der Betriebswahlschalter am PZS-Modul steht auf Stellung AUS, oder die Zuführung ist unterbunden, weil sie sich ausserhalb der eigestellte Freigabezeit am PZS-Modul befindet."
+  03:
+    Bedeutung/Ursache/Auswirkung: "*Brennraumtür offen* Kessel geht in den Ausbrand."
+    Behebung: "Brennraumtür schliessen"
+  04:
+    Bedeutung/Ursache/Auswirkung: "*Heizungsnot-, Fluchtschalter ausgeschaltet* Kessel geht in den Ausbrand, jedoch läuft das Gebläse nicht."
+    Behebung: "Heizungsnot-, Fluchtschalter einschalten."
+  05:
+    Bedeutung/Ursache/Auswirkung: "*Abgastemperaturfühler defekt* Keine Auswirkung für den Betrieb. Keine Anzeige der Abgastemperatur möglich."
+    Behebung: "Abgastemperaturfühler tauschen, Windhager Werkskundendienst oder Heizungsfachmann verständigen."
+  06:
+    Bedeutung/Ursache/Auswirkung: "*Temperatur im Kesselschaltfeld zu hoch* Temperatur ist im Mittel über 15 Minuten grö- ßer als 60°C. Keine Auswirkung für den Betrieb."
+    Behebung: "Windhager-Werkskundendienst oder Heizungsfachmann ver- ständigen."
+  07:
+    Bedeutung/Ursache/Auswirkung: "*Rüttelmotor bewegt sich nicht mehr* Kessel geht in den Ausbrand."
+    Behebung: "Brennertopf reinigen - siehe Seite 12."
+  09:
+    Bedeutung/Ursache/Auswirkung: "*Klappe bei Pelletszuführung öffnet nach einer Zuführung nicht* Es werden keine Pellets in den Vorratsbehälter zugeführt. Kessel geht nicht in Betrieb."
+    Behebung: "a) Klappe geht nicht von selbst auf - Klappe reinigen und auf Leichtgängigkeit kontrollieren siehe Bedienungs- anleitung vollautomatische Pelletszuführung und Reset Taster Drücken. b) Saugturbine schaltet nicht mehr aus, Netzstecker hinten bei Zuführung ausstecken und Windhager-Werkskunden- dienst oder Heizungsfachmann verständigen."
+  10:
+    Bedeutung/Ursache/Auswirkung: "*Zuführung saugt keine Pellets an* Es werden keine Pellets zugeführt. Kessel geht nicht in Betrieb."
+    Behebung: "a) Keine Pellets bei Ansaugsonde, umschalten auf andere Ansaugsonde -siehe Bedienungsanleitung vollautomat- sche Pelletszuführung. b) Zuführschlauch oder Ansaugsonde verlegt siehe Bedienungsanleitung vollautomatische Pelletszuführung. c) Windhager-Werkskundendienst oder Heizungsfachmann verständigen."
+  11:
+    Bedeutung/Ursache/Auswirkung: "*Füllstandsschalter (Näherungsschalter) im Vorratsbehälter schaltet nicht* Kessel geht nicht in Betrieb."
+    Behebung: "a) Klappe schließt nicht - Klappe reinigen, sie muss vollflä- chig an der Zuführung anliegen. Kontrolllampe am Näherungsschalter an der Zuführung muss bei geschlos sener Klappe hell leuchten - siehe Bedienungsanleitung vollautomatische Pelletszuführung. b) Füllstandsschalter (Näherungsschalter) Vorratsbehälter defekt - Windhager-Werkskundendienst oder Heizungsfachmann verständigen."
+
+AL:
+  01:
+    Bedeutung/Ursache/Auswirkung: "*Kesselfühler defekt* Kessel geht in den Ausbrand."
+    Behebung: "Kesselfühler tauschen, Windhager-Werkskundendienst oder Heizungsfachmann verständigen."
+  02:
+    Bedeutung/Ursache/Auswirkung: "*Kesselfühler defekt* Kessel geht in den Ausbrand."
+    Behebung: "Thermocontrol-Fühler tauschen, Windhager- Werkskundendienst oder Heizungsfachmann verständigen."
+  03:
+    Bedeutung/Ursache/Auswirkung: "*Saugzuggebläse defekt* Die tatsächliche Drehzahl ist abweichend von der Soll-Drehzahl. Kessel geht in den Ausbrand."
+    Behebung: "a) Gebläserad ist verschmutzt, reinigen - siehe Seite 14. b) Gebläsemotor tauschen, Windhager-Werkskundendienst oder Heizungsfachmann verständigen."
+  04:
+    Bedeutung/Ursache/Auswirkung: "*Sicherheitsfühler am Schneckenrohr defekt* Kessel geht in den Ausbrand."
+    Behebung: "Sicherheitsfühler tauschen, Windhager-Werkskundendienst oder Heizungsfachmann verständigen."
+  05:
+    Bedeutung/Ursache/Auswirkung: "*Temperatur im Schneckenrohr zu hoch* Kessel geht in den Ausbrand und fördert Pellets in den Brennraum. Sollte die Temperatur trotzdem zu hoch sein, wird die externe Warneinrichtung eingeschaltet (falls diese bauseits angeschlossen ist)."
+    Behebung: "a) Füllstand des Wasserbehälters kontrollieren (siehe Seite 13), wenn kein Wasser im Behälter (Rückbrandsicherung hat ausgelöst) Windhager-Werks- kundendienst verständigen. b) Brennraum kontrollieren, alle Pellets aus Brennertopf entfernen c) Reset-Tasterdrücken, sollte die Zündung das erste Mal nicht funktionieren (AL 006), Reset wiederholen (Pellets in der Förderschnecke sind durch die höhere Temperatur in Mitleidenschaft gezogen worden)."
+  06:
+    Bedeutung/Ursache/Auswirkung: "*Maximale Anheizzeit überschritten* Beim Anheizen nach 8 Minuten keine Flammenbildung. Anheizvorgang wird abgebrochen."
+    Behebung: "a) Brennertopf reinigen - siehe Seite 12. b) Heißluftgebläse defekt, Windhager-Werkskundendienst oder Heizungsfachmann verständigen."
+  07:
+    Bedeutung/Ursache/Auswirkung: "*Keine Flammenbildung im Regel- betrieb* Im Modulationsbetrieb (Betriebszustand 4) erlischt die Flamme. Kessel geht in den Ausbrand."
+    Behebung: "a) Schnecke steckt durch Fremdteil, Vorratsbehälter reinigen - siehe Seite 16, und Fremdteil bei Öffnung über Schnecke entfernen, Vorratsbehälter wieder befüllen. Bis Kessel in Betrieb geht, kann bis zu 2 x die Informationsmeldung AL 006 auftreten. Diese mit Reset-Taster quittieren. b) Windhager-Werkskundendienst oder Heizungsfachmann verständigen."
+  08:
+    Bedeutung/Ursache/Auswirkung: "*Motor-Förderschnecke defekt* Kessel geht in den Ausbrand, Saugzuggebläse wird sofort abgestellt."
+    Behebung: "Schneckenmotor tauschen, Windhager-Werkskunden- dienst oder Heizungsfachmann verständigen."
+  09:
+    Bedeutung/Ursache/Auswirkung: "*Keine Rostrüttelung* Rüttelmotor bewegt sich nicht oder erreicht Endposition nicht mehr, Kessel geht in den Ausbrand."
+    Behebung: "a) Rostscheibe steckt, Brennertopf reinigen - siehe Seite 12. b) Rüttelmotor defekt, Windhager-Werkskundendienst oder Heizungsfachmann verständigen. c) Endschalter defekt, Windhager-Werkskundendienst oder Heizungsfachmann verständigen."
+  99:
+    Bedeutung/Ursache/Auswirkung: "*Sicherheitsthermostat hat angesprochen* Kesseltemperatur ist über 100°C, Kessel geht in den Ausbrand, Saugzuggebläse wird sofort abgeschaltet."
+    Behebung: "siehe Seite 10."
